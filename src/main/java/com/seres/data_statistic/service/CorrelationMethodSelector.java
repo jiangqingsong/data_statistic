@@ -3,6 +3,8 @@ package com.seres.data_statistic.service;
 import com.seres.data_statistic.constains.CorrelationMethod;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.stat.inference.KolmogorovSmirnovTest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +17,7 @@ import java.util.Set;
  * @date 2024/7/23 20:08
  */
 public class CorrelationMethodSelector {
+    private static final Logger logger = LoggerFactory.getLogger(CorrelationMethodSelector.class);
     public static void main(String[] args) {
         // 示例数据
 //        Object[] data1 = {1, 2, 3, 4, 5}; // 定量数据

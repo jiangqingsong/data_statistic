@@ -1,14 +1,20 @@
 package com.seres.data_statistic.service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Arrays;
 /**
  * @author jiangqs
  * @version 1.0
- * @Description:
+ * @Description: 计算数据各区间的频次
  * @date 2024/7/23 16:35
  */
+@Service
 public class HistogramCalculator {
+    private static final Logger logger = LoggerFactory.getLogger(HistogramCalculator.class);
     /**
      * 计算数据的频次并输出各区域频次
      * @param data 输入的数据数组

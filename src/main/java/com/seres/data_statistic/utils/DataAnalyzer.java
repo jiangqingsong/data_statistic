@@ -1,4 +1,6 @@
 package com.seres.data_statistic.utils;
+import com.seres.data_statistic.constains.DataType;
+
 import java.util.HashSet;
 import java.util.Set;
 /**
@@ -39,9 +41,9 @@ public class DataAnalyzer {
 
         // 如果有非数值型数据并且唯一值数量相对较多，则认为是定类
         if (hasNonNumeric && uniqueValues.size() > data.length * 0.5) {
-            return "Categorical"; // 定类
+            return DataType.CATEGORICAL.getChineseName(); // 定类
         } else {
-            return "Quantitative"; // 定量
+            return DataType.QUANTITATIVE.getChineseName(); // 定量
         }
     }
 

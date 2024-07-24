@@ -1,4 +1,4 @@
-package com.seres.data_statistic.model;
+package com.seres.data_statistic.dto;
 
 import lombok.Data;
 
@@ -9,8 +9,8 @@ import lombok.Data;
  * @date 2024/7/23 12:49
  */
 @Data
-public class ColumnData {
-    private String columnName;
+public class ColData {
+    private String colName;
     private Number[] data;
 
 }

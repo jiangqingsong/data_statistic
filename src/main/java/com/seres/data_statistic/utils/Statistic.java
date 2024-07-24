@@ -1,6 +1,7 @@
 package com.seres.data_statistic.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.seres.data_statistic.vo.DataDescVO;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 import org.apache.commons.math3.stat.inference.TestUtils;
@@ -28,7 +29,7 @@ public class Statistic {
      * @param: * @param: null
      * @return: * @return: null
      */
-    public static <T extends Number> String analyze(T[] data) {
+    public static <T extends Number> DataDescVO analyze(T[] data) {
         // Filter out null values and convert input data to double array
         double[] doubleData = Arrays.stream(data)
                 .filter(num -> num != null)
@@ -66,27 +67,28 @@ public class Statistic {
         Kurtosis kurtosis = new Kurtosis();
         Skewness skewness = new Skewness();
 
-        // Create JSON object with descriptive statistics
-        JSONObject json = new JSONObject();
-        json.put("sampleCount", stats.getN());
-        json.put("missingCount", missingCount);
-        json.put("uniqueCount", uniqueValues.size());
-        json.put("mean", stats.getMean());
-        json.put("standardDeviation", stats.getStandardDeviation());
-        json.put("max", stats.getMax());
-        json.put("min", stats.getMin());
-        json.put("median", stats.getPercentile(50));
-        json.put("coefficientOfVariation", stats.getStandardDeviation() / stats.getMean());
-        json.put("variance", stats.getVariance());
-//        json.put("shapiroWilk", swStatistic);
-        json.put("kurtosis", kurtosis.evaluate(doubleData));
-        json.put("skewness", skewness.evaluate(doubleData));
-        json.put("boxPlotMax", boxMax);
-        json.put("boxPlotMin", boxMin);
-        json.put("q1", q1);
-        json.put("q3", q3);
 
-        return json.toJSONString();
+        DataDescVO result = new DataDescVO();
+
+        // 设置 StatisticResult 实例的各个字段
+        result.setSampleCount(stats.getN());
+        result.setMissingCount((int) missingCount);
+        result.setUniqueCount(uniqueValues.size());
+        result.setMean(stats.getMean());
+        result.setStandardDeviation(stats.getStandardDeviation());
+        result.setMax(stats.getMax());
+        result.setMin(stats.getMin());
+        result.setMedian(stats.getPercentile(50));
+        result.setCoefficientOfVariation(stats.getStandardDeviation() / stats.getMean());
+        result.setVariance(stats.getVariance());
+        result.setKurtosis(kurtosis.evaluate(doubleData));
+        result.setSkewness(skewness.evaluate(doubleData));
+        result.setBoxPlotMax(boxMax);
+        result.setBoxPlotMin(boxMin);
+        result.setQ1(q1);
+        result.setQ3(q3);
+
+        return result;
     }
 
 
