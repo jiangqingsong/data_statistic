@@ -11,7 +11,6 @@ import java.util.List;
  * @date 2024/7/24 19:52
  */
 @Data
-public class Request4DTO {
-    private List<DataNormalDTO> columns;
-    private Integer numBins;
+public class Request6DTO {
+    private List<CorrelationDTO> columns;
 }

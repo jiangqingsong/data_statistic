@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @Service
 public class DataOverviewService {
 
-
     /**
     * @Description 数据概览分析
     * @Param
@@ -42,7 +41,11 @@ public class DataOverviewService {
         return results;
     }
 
-
+    /**
+    * @Description 定量概览分析
+    * @Param
+    * @Return
+    */
     private static void analyzeQuantitativeData(List<Double> data, DataOverviewVO result) {
         Collections.sort(data);
         result.setSampleCount(data.size());
@@ -64,6 +67,11 @@ public class DataOverviewService {
         result.setBoxPlotMax(result.getQ3() + 1.5 * (result.getQ3() - result.getQ1()));
     }
 
+    /**
+     * @Description 定类概览分析
+     * @Param
+     * @Return
+     */
     private static void analyzeQualitativeData(List<String> data, DataOverviewVO result) {
         result.setSampleCount(data.size());
         result.setMissingCount((int) data.stream().filter(Objects::isNull).count());

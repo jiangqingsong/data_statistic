@@ -1,15 +1,12 @@
 package com.seres.data_statistic.utils;
 
-import com.alibaba.fastjson.JSONObject;
 import com.seres.data_statistic.vo.DataDescVO;
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-import org.apache.commons.math3.stat.descriptive.rank.Percentile;
-import org.apache.commons.math3.stat.inference.TestUtils;
-import org.apache.commons.math3.stat.descriptive.moment.Kurtosis;
-import org.apache.commons.math3.stat.descriptive.moment.Skewness;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.apache.commons.math3.stat.correlation.SpearmansCorrelation;
-import org.apache.commons.math3.stat.correlation.KendallsCorrelation;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import org.apache.commons.math3.stat.descriptive.moment.Kurtosis;
+import org.apache.commons.math3.stat.descriptive.moment.Skewness;
+import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
 import java.util.Arrays;
 import java.util.HashSet;

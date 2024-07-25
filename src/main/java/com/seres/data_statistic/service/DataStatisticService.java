@@ -3,7 +3,6 @@ package com.seres.data_statistic.service;
 
 import com.seres.data_statistic.dto.ColData;
 import com.seres.data_statistic.dto.DataNormalDTO;
-import com.seres.data_statistic.model.ColumnData2;
 import com.seres.data_statistic.utils.NormalityTestUtils;
 import com.seres.data_statistic.utils.Statistic;
 import com.seres.data_statistic.vo.DataDescMutVO;
@@ -12,7 +11,6 @@ import com.seres.data_statistic.vo.NormalTestVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 

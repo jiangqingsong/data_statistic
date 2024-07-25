@@ -1,11 +1,12 @@
 package com.seres.data_statistic.service;
+import com.seres.data_statistic.dto.DataNormalDTO;
+import com.seres.data_statistic.vo.CalculateHistogramVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Arrays;
+import java.util.*;
+
 /**
  * @author jiangqs
  * @version 1.0
@@ -13,15 +14,31 @@ import java.util.Arrays;
  * @date 2024/7/23 16:35
  */
 @Service
-public class HistogramCalculator {
-    private static final Logger logger = LoggerFactory.getLogger(HistogramCalculator.class);
+public class HistogramCalculatorService {
+    private static final Logger logger = LoggerFactory.getLogger(HistogramCalculatorService.class);
+
+
+    public List<CalculateHistogramVO> calculateHistograms(List<DataNormalDTO> columns, int numBins){
+        List<CalculateHistogramVO> result = new ArrayList<>();
+
+        columns.forEach(col -> {
+            Map<String, Integer> histogram = calculateHistogram(col.getData(), numBins);
+            CalculateHistogramVO histogramVO = new CalculateHistogramVO();
+            histogramVO.setColName(col.getColName());
+            histogramVO.setData(histogram);
+            result.add(histogramVO);
+        });
+
+        return result;
+    }
     /**
      * 计算数据的频次并输出各区域频次
      * @param data 输入的数据数组
      * @param numBins 区间的数量
      * @return 各区间及其频次的映射
      */
-    public static Map<String, Integer> calculateHistogram(double[] data, int numBins) {
+    public Map<String, Integer> calculateHistogram(double[] data, int numBins) {
+
         if (data == null || data.length == 0) {
             throw new IllegalArgumentException("数据数组不能为空");
         }
@@ -76,7 +93,7 @@ public class HistogramCalculator {
         return String.format("%.2f - %.2f", start, end);
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         // 示例数据
         double[] data = {160, 165, 170, 175, 180, 185, 190};
 
@@ -90,5 +107,5 @@ public class HistogramCalculator {
         for (Map.Entry<String, Integer> entry : histogram.entrySet()) {
             System.out.println("区间 " + entry.getKey() + " 的频次: " + entry.getValue());
         }
-    }
+    }*/
 }
